@@ -26,7 +26,7 @@ const Diary = () => {
     useEffect(() => {
         let today_date = new Date()
         let dd = today_date.getDate()
-        let mm = today_date.getMonth();
+        let mm = today_date.getMonth() + 1;
         let yyyy = today_date.getFullYear();
 
         setToday(yyyy + "-" + mm + "-" + dd)

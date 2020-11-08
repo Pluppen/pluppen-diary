@@ -1,4 +1,5 @@
 import {React, useEffect, useState} from "react"
+import firebase from "./firebase.js";
 
 const Diary = () => {
     const [today, setToday] = useState("")
@@ -10,11 +11,16 @@ const Diary = () => {
 
     const updateDiary = (e) => {
         e.preventDefault();
-        console.log(foodEaten);
-        console.log(grattitude);
-        console.log(diary);
-        console.log(mood);
-        console.log(energy);
+        const diaryRef = firebase.database().ref("diaries/" + today);
+        const diaryItem = {
+            title: today,
+            energy: energy,
+            mood: mood,
+            foodEaten: foodEaten,
+            grattitude: grattitude,
+            diaryText: diary
+        }
+        diaryRef.set(diaryItem)
     }
 
     useEffect(() => {

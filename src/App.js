@@ -9,6 +9,7 @@ import {
 import Navbar from "./Navbar.js";
 import Welcome from "./Welcome.js";
 import Diary from "./Diary.js";
+import History from "./History.js";
 
 const App = () => {
     return (
@@ -20,6 +21,7 @@ const App = () => {
                         <Diary />
                     </Route>
                     <Route path="/history">
+                        <History />
                     </Route>
                     <Route path="/">
                         <Welcome />

@@ -2,6 +2,7 @@ import {React, useEffect, useState} from "react"
 import firebase from "./firebase.js";
 
 const Diary = () => {
+    const [statusMsg, setStatusMsg] = useState(null)
     const [today, setToday] = useState("")
     const [foodEaten, setFoodEaten] = useState("")
     const [grattitude, setGrattitude] = useState("")
@@ -21,6 +22,8 @@ const Diary = () => {
             diaryText: diary
         }
         diaryRef.set(diaryItem)
+        setStatusMsg("Du har laddat upp !")
+        setTimeout(() => setStatusMsg(null), 4000)
     }
 
     useEffect(() => {
@@ -32,8 +35,11 @@ const Diary = () => {
         setToday(yyyy + "-" + mm + "-" + dd)
     });
 
+    let banner = statusMsg == null ? null : <div class="alert alert-success" role="alert">{statusMsg}</div>
+
     return (
         <form onSubmit={(event) => updateDiary(event)} class="card p-3 mt-5">
+            {banner}
             <h1>Diary for {today}</h1>
             <div className="row justify-content-start">
                 <div className="col-12 col-md-6 p-4">
